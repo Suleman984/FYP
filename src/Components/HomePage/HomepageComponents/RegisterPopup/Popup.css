@@ -1,0 +1,66 @@
+/* Popup.css (CSS) */
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f8f8f8; /* Light gray background */
+    padding: 30px; /* Increased padding */
+    max-width: 500px; /* Increased maximum width */
+    text-align: center; /* Center align content */
+    border: 2px solid #ccc;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif; /* Change font family */
+  }
+  
+  .popup-heading {
+    font-size: 24px; /* Increased font size */
+    font-weight: bold;
+    margin-bottom: 20px; /* Increased margin */
+  }
+  
+  .terms-label {
+    display: block;
+    margin-bottom: 20px; /* Increased margin */
+  }
+  
+  .terms-label input[type="checkbox"] {
+    margin-right: 10px; /* Increased margin */
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: center; /* Center align buttons */
+    margin-top: 20px; /* Add space above the button group */
+  }
+  
+  .register-button,
+  .close-button {
+    padding: 12px 24px; /* Increased padding */
+    border: none;
+    border-radius: 6px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 16px; /* Increased font size */
+    margin: 0 10px; /* Add margin between buttons */
+  }
+  
+  .register-button {
+    background-color: #007bff; /* Blue color */
+    color: white;
+  }
+  
+  .register-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  .close-button {
+    background-color: #ccc; /* Light gray color */
+    color: black;
+  }
+  
+  .close-button:hover {
+    background-color: #999; /* Darker gray on hover */
+  }
+  

@@ -1,0 +1,39 @@
+.data-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .data-item {
+    width: 60%;
+    margin-bottom: 20px;
+    margin-left: 5%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .text {
+    margin-bottom: 15px;
+  }
+  
+  .image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+  }
+  
+  .points {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .points li {
+    margin-bottom: 5px;
+  }
+  
