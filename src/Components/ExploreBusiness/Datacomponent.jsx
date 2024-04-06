@@ -15,7 +15,7 @@ const DataComponent = () => {
       imageUrl: 'https://via.placeholder.com/150',
       points: ['Point 1', 'Point 2', 'Point 3']
     },
-    // Add more data objects for additional titles, texts, images, and points
+    // Add more data objects for additional titles, texts, images, and points testtt
   ];
 
   return (
