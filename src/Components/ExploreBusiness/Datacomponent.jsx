@@ -1,33 +1,36 @@
-import React from 'react';
 import './style.css'; // Import CSS file for styling
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const DataComponent = () => {
-  const data = [
-    {
-      title: 'Title 1',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      imageUrl: 'https://via.placeholder.com/150',
-      points: ['Point 1', 'Point 2', 'Point 3']
-    },
-    {
-      title: 'Title 2',
-      text: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      imageUrl: 'https://via.placeholder.com/150',
-      points: ['Point 1', 'Point 2', 'Point 3']
-    },
-    // Add more data objects for additional titles, texts, images, and points testtt
-  ];
+  const [dataArray, setDataArray] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://192.168.18.17:3001/get-scrapped-data');
+        setDataArray(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    console.log(dataArray);
+  }, [dataArray]);
 
   return (
     <div className="data-container">
-      {data.map((item, index) => (
+      {dataArray.map((item, index) => (
         <div className="data-item" key={index}>
-          <h2 className="title">{item.title}</h2>
-          <p className="text">{item.text}</p>
-          <img src={item.imageUrl} alt={item.title} className="image" />
+          <h2 className="title">{item.h3Text}</h2>
+          <img src={item.imgSrc} alt={item.h3text} className="image" />
           <ul className="points">
-            {item.points.map((point, idx) => (
-              <li key={idx}>{point}</li>
+            {item.liTexts.map((text, idx) => (
+              <li key={idx}>{text}</li>
             ))}
           </ul>
         </div>
