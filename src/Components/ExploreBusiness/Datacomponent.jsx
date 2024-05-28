@@ -4,7 +4,16 @@ import axios from 'axios';
 
 const DataComponent = () => {
   const [dataArray, setDataArray] = useState([]);
-
+  const imageAddresses=['./Images/Gulahmed.jpg',
+  './Images/Saphire.jpg',
+  './Images/JunaidJumshaid.jpg',
+  './Images/Khadi.jpg',
+  './Images/Limelight.jpg',
+  './Images/Bonanza.jpg',
+  './Images/Outfitters.jpg',
+  './Images/Alkaram.jpg',
+  './Images/Nishat.webp',
+  './Images/Safinaz.jpg',]
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -23,11 +32,11 @@ const DataComponent = () => {
   }, [dataArray]);
 
   return (
-    <div className="data-container">
+    <div className="data-container" style={{backgroundColor:'lightgrey'}}>
       {dataArray.map((item, index) => (
         <div className="data-item" key={index}>
           <h2 className="title">{item.h3Text}</h2>
-          <img src={item.imgSrc} alt={item.h3text} className="image" />
+          <img src={imageAddresses[index]} alt={item.h3text} className="image" />
           <ul className="points">
             {item.liTexts.map((text, idx) => (
               <li key={idx}>{text}</li>

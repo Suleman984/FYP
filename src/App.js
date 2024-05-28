@@ -2,6 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./assets/css/Chart.min.css";
+import "./assets/css/tailwind.output.css";
+// import "./assets/js/Chart.min.js";
 // import Profile from "./components/profile";
 import { useState,useEffect } from "react";
 import { auth } from "./Components/Authentication/firebase";
@@ -22,7 +25,8 @@ import {
   Navigate,
 } from "react-router-dom";
 import SignupScreen from './Components/Authentication/SignUp/SignupScreen';
-
+import SideDrawer from './Components/HomePage/HomepageComponents/Drawer';
+import { Home } from '@mui/icons-material';
 
 
 function App() {
@@ -34,27 +38,30 @@ function App() {
   });
   return (
     <div className="App">
-      {/* <LoginScreen/>
+      {/* <LoginScreen/> */}
       {/* <Homepage/> */}
       {/* <DataComponent/> */}
       {/* <RouterProvider router={router} /> */}
-      <Router>
+       { <Router>
       <div className="App">
         <div className="auth-wrapper">
           <div className="auth-inner">
             <Routes>
               <Route
                 path="/"
-                element={!user ? <Navigate to="/login" /> : <Homepage />}
+                element={!user ? <Navigate to="/login" /> : <SideDrawer />}
               />
               <Route path="/login" element={<LoginScreen />} />
               <Route path="/signup" element={<SignupScreen />} />
+              <Route path='/Datacomponent' element={<DataComponent/>}/>
             </Routes>
             <ToastContainer />
           </div>
         </div>
       </div>
-    </Router>
+    </Router> }
+    {/* <SideDrawer/>    */}
+    {/* <Homepage/> */}
       
     </div>
   );

@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import "../CSS/Homepage.css"; // Import CSS file for styling
 import * as ReactDOM from "react-dom/client";
 import PopupRegister from "./RegisterPopup/PopupRegister"; // Import RegisterPopup component
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
+import DataComponent from "../../ExploreBusiness/Datacomponent";
 
 const router = createBrowserRouter([
   {
@@ -28,15 +29,8 @@ function Homepage() {
   const explore = () => {};
   const analytics = () => {};
   return (
-    <div className="landing-page-container">
-      <div className="top-menu">
-        <ul>
-          <li onClick={analytics}>Website Analytics</li>
-          <li onClick={explore}>Explore Ecommerce Businesses</li>
-          <li onClick={togglePopup}>Register for Updates</li>
-          <li onClick={tools}>Tools and Technologies</li>
-        </ul>
-      </div>
+    <div className="landing-page-container" >
+      
 
       <div className="centered-text">
         <h1>Welcome to Our Website</h1>

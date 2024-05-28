@@ -1,23 +1,44 @@
-// EcommerceToolsPage.js
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import MediaCard from './Card';
+import { ToolImageAdresses, ToolTexts, ToolTitles ,ToolUrls} from './ToolsData';
 
-import React from 'react';
-import './styling.css';
-
-function EcommerceToolsPage() {
+export default function DenseAppBar() {
+  console.log(ToolImageAdresses)
   return (
-    <div className="ecommerce-tools-page">
-      <div className="section">
-        <h2>Ecommerce Tools and Technologies</h2>
-        <p>This page highlights some of the essential tools and technologies used in ecommerce businesses, along with examples of famous organizations that utilize them.</p>
-        {/* Add the detailed list of tools and technologies here */}
-      </div>
-      <div className="section">
-        <h2>Famous Organizations Using Ecommerce Tools</h2>
-        <p>Here are some well-known organizations that leverage various ecommerce tools and technologies to grow their online businesses:</p>
-        {/* Add the detailed list of famous organizations here */}
-      </div>
-    </div>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static" style={{ width: '100%', cursor: 'default',backgroundColor:'#757575' }}>
+        <Toolbar variant="dense">
+          <Typography
+            variant="h6"
+            color="inherit"
+            component="div"
+            sx={{ flexGrow: 1, textAlign: 'center' }}
+          >
+            Tools And Technologies
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Box sx={{ marginTop: '20px' }}>
+        <Typography variant='h2'>Platforms</Typography>
+      </Box>
+      <Grid container spacing={2} justifyContent="center">
+        {ToolTitles.map((title, index) => (
+          <Grid item xs={12} sm={6} md={4} key={index}>
+            <MediaCard
+              ToolImage={ToolImageAdresses[index]}
+              TUrls={ToolUrls[index]}
+              ToolTitle={ToolTitles[index]}
+              ToolTexts={ToolTexts[index]}
+              
+            />
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 }
-
-export default EcommerceToolsPage;
