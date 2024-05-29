@@ -20,8 +20,61 @@ const UrlInputForm = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get('http://192.168.18.17:3001/get-analytics-page', { params: { url: businessName } });
+        const res = await axios.get('http://192.168.0.190:3001/get-analytics-page', { params: { url: businessName } });
         setResponse(res.data);
+        
+		// **************************************************************************************
+        const parser = new DOMParser();
+
+			// Parse the HTML string into a DOM document
+			const doc = parser.parseFromString(res.data, 'text/html');
+
+			// Select the table element from the document
+			const table = doc.querySelector('table');
+
+			// Now you can work with the table element as needed
+			// console.log(table);
+
+			const headings = Array.from(table.querySelectorAll('th')).map(th => th.textContent.trim());
+			const rows = Array.from(table.querySelectorAll('tbody tr'));
+			// console.log(headings, rows)
+
+			const extractedData = rows.map(row => {
+				const rowData = Array.from(row.querySelectorAll('td')).map(td => td.textContent.trim());
+				const obj = {};
+				headings.forEach((heading, index) => {
+					obj[heading] = rowData[index];
+				});
+				return obj;
+			});
+
+			// console.log(extractedData);
+
+			//  table format parsing  end
+
+
+
+			// Select all card divs
+			const cardDivs = doc.querySelectorAll('.grid > div');
+
+			// Initialize an empty array to store the extracted data
+			const dataArray = [];
+
+			// Iterate over each card div
+			cardDivs.forEach(cardDiv => {
+				// Select the first and second <p> elements inside the card div
+				const heading = cardDiv.querySelector('p:nth-child(1)').textContent.trim();
+				const value = cardDiv.querySelector('p:nth-child(2)').textContent.trim();
+
+				// Push an object with heading and value properties into the dataArray
+				dataArray.push({ heading, value });
+			});
+
+			// Log the resulting array of objects
+			console.log(dataArray);
+		// **************************************************************************************
+
+
       } catch (error) {
         console.error('Error fetching data:', error);
       }
