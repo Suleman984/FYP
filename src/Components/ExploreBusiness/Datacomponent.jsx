@@ -17,7 +17,7 @@ const DataComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://192.168.0.190:3001/get-scrapped-data');
+        const response = await axios.get('http://192.168.18.17:3001/get-scrapped-data');
         setDataArray(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
