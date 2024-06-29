@@ -24,7 +24,7 @@ export default function DenseAppBar() {
         </Toolbar>
       </AppBar>
       <Box sx={{ marginTop: '20px' }}>
-        <Typography variant='h2'>Platforms</Typography>
+        <Typography variant='h2'>Tools</Typography>
       </Box>
       <Grid container spacing={2} justifyContent="center">
         {ToolTitles.map((title, index) => (

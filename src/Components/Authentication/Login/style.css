@@ -1,0 +1,90 @@
+:root {
+    --main-bg-color: #333; /* Default background color */
+    --main-text-color: #f9f9f9; /* Default text color */
+  }
+  
+  @keyframes changeBackground {
+    0% { background-color: #333; --main-bg-color: #333; --main-text-color: #f9f9f9; } /* Black */
+    50% { background-color: #77808a; --main-bg-color: #a5b4c4; --main-text-color: #554e4e; } /* Blue */
+    100% { background-color: #666; --main-bg-color: #666; --main-text-color: #f9f9f9; } /* Grey */
+  }
+  
+  @keyframes changeLoginColor {
+    0%, 100% { background-color: var(--main-bg-color); color: var(--main-text-color); }
+    50% { background-color: var(--main-text-color); color: var(--main-bg-color); }
+  }
+  
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #666; /* Set initial color to grey */
+    animation: changeBackground 6s infinite; /* Change every 6 seconds */
+  }
+  
+  .login-form {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: changeLoginColor 6s infinite; /* Change every 6 seconds */
+  }
+  
+  .login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .input-container {
+    margin-bottom: 15px;
+  }
+  
+  .input-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #666;
+  }
+  
+  .input-container input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .button-container {
+    text-align: center;
+  }
+  
+  .button-container button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .button-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  .register-link {
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  .register-link a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .register-link a:hover {
+    text-decoration: underline;
+  }

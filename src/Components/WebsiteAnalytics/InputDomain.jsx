@@ -129,7 +129,7 @@ const UrlInputForm = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await axios.get('http://192.168.18.17:3001/get-analytics-page', { params: { url: businessName } });
+        const res = await axios.get('http://192.168.137.214:3001/get-analytics-page', { params: { url: businessName } });
         setResponse(res.data);
       } catch (error) {
         console.error('Error fetching data:', error);

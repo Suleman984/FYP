@@ -11,28 +11,59 @@ import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Homepage from "./Homepage";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DataComponent from "../../ExploreBusiness/Datacomponent";
 import EcommerceToolsPage from "../../ToolsandTech/ToolsandTechnology";
 import UrlInputForm from "../../WebsiteAnalytics/InputDomain";
+import { auth, db } from '../../Authentication/firebase';
+import LoginScreen from "../../Authentication/Login/LoginScreen";
+
 const drawerWidth = 240;
 
 export default function SideDrawer(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [selectedComponent, setSelectedComponent] = useState(<Homepage />);
+  const [userDetails, setUserDetails] = useState(null);
+
+  const fetchCredentials = async () => {
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        setUserDetails(user.email);
+      } else {
+        setUserDetails(null);
+      }
+    });
+  };
+
+  useEffect(() => {
+    fetchCredentials();
+  }, []);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const handleListItemClick = (component) => {
-    setSelectedComponent(component);
-    setMobileOpen(false); // Close the drawer after selecting a component
+  const handleListItemClick = (text, component) => {
+    if (text === "Logout") {
+      handleLogout();
+    } else {
+      setSelectedComponent(component);
+      setMobileOpen(false); // Close the drawer after selecting a component
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      window.location.href = '/login';
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const drawer = (
-    <div style={{ backgroundColor: "#757575", color: "#fff", height: "100%" }}>
+    <div style={{ backgroundColor: "#757575", color: "#fff", height: "100%", position: "relative" }}>
       <Toolbar
         sx={{
           display: "flex",
@@ -52,14 +83,18 @@ export default function SideDrawer(props) {
           { text: "Register", component: <EcommerceToolsPage /> },
           { text: "Explore Business", component: <DataComponent /> },
           { text: "Tools and Technologies", component: <EcommerceToolsPage /> },
+          { text: "Logout", component: null },
         ].map(({ text, component }) => (
           <ListItem key={text} disablePadding>
-            <ListItemButton onClick={() => handleListItemClick(component)}>
+            <ListItemButton onClick={() => handleListItemClick(text, component)}>
               <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
+      <Box sx={{ position: "absolute", bottom: 0, width: "100%", padding: 2, backgroundColor: "#757575", color: "#fff", textAlign: "center" }}>
+        User: {userDetails}
+      </Box>
     </div>
   );
 
