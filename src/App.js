@@ -27,8 +27,8 @@ import {
 import SignupScreen from './Components/Authentication/SignUp/SignupScreen';
 import SideDrawer from './Components/HomePage/HomepageComponents/Drawer';
 import { Home } from '@mui/icons-material';
-
-
+// import {LandingPage} from './Components/HomePage/HomepageComponents/Landingpage';
+import LandingPage from './Components/HomePage/HomepageComponents/Landingpage'; 
 function App() {
   const [user, setUser] = useState();
   useEffect(() => {
@@ -49,11 +49,12 @@ function App() {
             <Routes>
               <Route
                 path="/"
-                element={!user ? <Navigate to="/login" /> : <SideDrawer />}
+                element={!user ? <Navigate to="/LandingPage" /> : <SideDrawer />}
               />
               <Route path="/login" element={<LoginScreen />} />
               <Route path="/signup" element={<SignupScreen />} />
               <Route path='/Datacomponent' element={<DataComponent/>}/>
+              <Route path='/LandingPage' element={<LandingPage/>}/>
             </Routes>
             <ToastContainer />
           </div>

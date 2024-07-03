@@ -3,16 +3,6 @@
     --main-text-color: #f9f9f9; /* Default text color */
   }
   
-  @keyframes changeBackground {
-    0% { background-color: #333; --main-bg-color: #333; --main-text-color: #f9f9f9; } /* Black */
-    50% { background-color: #77808a; --main-bg-color: #a5b4c4; --main-text-color: #554e4e; } /* Blue */
-    100% { background-color: #666; --main-bg-color: #666; --main-text-color: #f9f9f9; } /* Grey */
-  }
-  
-  @keyframes changeLoginColor {
-    0%, 100% { background-color: var(--main-bg-color); color: var(--main-text-color); }
-    50% { background-color: var(--main-text-color); color: var(--main-bg-color); }
-  }
   
   .login-container {
     display: flex;

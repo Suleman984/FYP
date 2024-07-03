@@ -80,7 +80,7 @@ export default function SideDrawer(props) {
       <List>
         {[
           { text: "Website Analytics", component: <UrlInputForm /> },
-          { text: "Register", component: <EcommerceToolsPage /> },
+          { text: "Notifications", component: <EcommerceToolsPage /> },
           { text: "Explore Business", component: <DataComponent /> },
           { text: "Tools and Technologies", component: <EcommerceToolsPage /> },
           { text: "Logout", component: null },
