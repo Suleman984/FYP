@@ -25,7 +25,7 @@ const UrlInputForm = () => {
       
       try {
         setLoading(true);
-        const res = await axios.get('http://localhost:3001/get-analytics-page', { params: { url: businessName } });
+        const res = await axios.get('http://172.16.10.209:3001/get-analytics-page', { params: { url: businessName } });
         setResponse(res.data);
       } catch (error) {
         console.error('Error fetching data:', error);

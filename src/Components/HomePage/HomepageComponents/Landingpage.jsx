@@ -19,9 +19,9 @@ const LandingPage = () => {
         </nav>
       </header>
       <section className="hero-section">
-        <h1>Turn data into insight with survey reports</h1>
+        <h1>Website Analytics</h1>
         <p>
-          Start your free trial, Get real-time data analysis for your projects
+          Get Detailed Analytics of your Website
         </p>
         <Link to="/signup" className="cta-button">
           Get Started
@@ -31,8 +31,8 @@ const LandingPage = () => {
         <div className="features-container">
           <div className="feature-card">
             <div className="feature-icon">📊</div>
-            <h3>50 Implementations</h3>
-            <p>Providing top-notch implementations.</p>
+            <h3> Efficient Real-Time Notifications</h3>
+            <p>Delivering timely notifications to keep users updated instantly.</p>
           </div>
           <div className="feature-card">
             <div className="feature-icon">📈</div>
@@ -40,11 +40,11 @@ const LandingPage = () => {
             <p>Offering comprehensive analytics and optimization.</p>
           </div>
           <div className="feature-card">
-            <div className="feature-icon">💡</div>
-            <h3>Consulting Services</h3>
-            <p>Expert consulting services to grow your business.</p>
+            <div className="feature-icon">🤖</div>
+            <h3>Machine Learning Integration</h3>
+            <p>Integrating machine learning models for intelligent data processing.</p>
           </div>
-          <div className="feature-card">
+          {/* <div className="feature-card">
             <div className="feature-icon">🔒</div>
             <h3>Topnotch Security</h3>
             <p>Ensuring the highest level of security.</p>
@@ -58,7 +58,7 @@ const LandingPage = () => {
             <div className="feature-icon">🛠️</div>
             <h3>Big Data Visualization</h3>
             <p>Visualizing complex data for better insights.</p>
-          </div>
+          </div> */}
         </div>
       </section>
     </div>

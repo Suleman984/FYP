@@ -105,3 +105,105 @@
   font-size: 40px;
   margin-bottom: 20px;
 }
+
+/* Media Queries for Responsiveness */
+
+@media (max-width: 1200px) {
+  .landing-header {
+    padding: 20px 30px;
+  }
+
+  .hero-section h1 {
+    font-size: 42px;
+  }
+
+  .hero-section p {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 992px) {
+  .landing-header {
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .landing-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .hero-section h1 {
+    font-size: 36px;
+  }
+
+  .hero-section p {
+    font-size: 16px;
+  }
+
+  .cta-button {
+    font-size: 16px;
+    padding: 12px 25px;
+  }
+
+  .features-container {
+    gap: 15px;
+  }
+
+  .feature-card {
+    width: 45%;
+  }
+}
+
+@media (max-width: 768px) {
+  .landing-header {
+    padding: 15px;
+  }
+
+  .landing-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-section h1 {
+    font-size: 30px;
+  }
+
+  .hero-section p {
+    font-size: 14px;
+  }
+
+  .cta-button {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  .feature-card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .landing-header {
+    padding: 10px;
+  }
+
+  .hero-section {
+    padding: 20px;
+  }
+
+  .hero-section h1 {
+    font-size: 24px;
+  }
+
+  .hero-section p {
+    font-size: 12px;
+  }
+
+  .cta-button {
+    font-size: 12px;
+    padding: 8px 15px;
+  }
+}
