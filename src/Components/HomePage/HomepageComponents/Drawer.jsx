@@ -17,6 +17,7 @@ import EcommerceToolsPage from "../../ToolsandTech/ToolsandTechnology";
 import UrlInputForm from "../../WebsiteAnalytics/InputDomain";
 import { auth, db } from '../../Authentication/firebase';
 import LoginScreen from "../../Authentication/Login/LoginScreen";
+import CompareAnalytics from "../../WebsiteAnalytics/Comparison/AnalyticsComparison";
 
 const drawerWidth = 240;
 
@@ -83,6 +84,7 @@ export default function SideDrawer(props) {
           { text: "Notifications", component: <EcommerceToolsPage /> },
           { text: "Explore Business", component: <DataComponent /> },
           { text: "Tools and Technologies", component: <EcommerceToolsPage /> },
+          { text: "Compare Web Analytics", component: <CompareAnalytics /> },
           { text: "Logout", component: null },
         ].map(({ text, component }) => (
           <ListItem key={text} disablePadding>

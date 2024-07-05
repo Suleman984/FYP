@@ -24,7 +24,7 @@ const DataComponent = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://192.168.18.17:3001/get-scrapped-data');
+        const response = await axios.get('http://172.16.10.132:3001/get-scrapped-data');
         setDataArray(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
