@@ -19,9 +19,9 @@ const LandingPage = () => {
         </nav>
       </header>
       <section className="hero-section">
-        <h1>Website Analytics</h1>
+        <h1>Turn data into insight with survey reports</h1>
         <p>
-          Get Detailed Analytics of your Website
+          Start your free trial, Get real-time data analysis for your projects
         </p>
         <Link to="/signup" className="cta-button">
           Get Started
@@ -31,8 +31,8 @@ const LandingPage = () => {
         <div className="features-container">
           <div className="feature-card">
             <div className="feature-icon">📊</div>
-            <h3> Efficient Real-Time Notifications</h3>
-            <p>Delivering timely notifications to keep users updated instantly.</p>
+            <h3>50 Implementations</h3>
+            <p>Providing top-notch implementations.</p>
           </div>
           <div className="feature-card">
             <div className="feature-icon">📈</div>
@@ -40,11 +40,11 @@ const LandingPage = () => {
             <p>Offering comprehensive analytics and optimization.</p>
           </div>
           <div className="feature-card">
-            <div className="feature-icon">🤖</div>
-            <h3>Machine Learning Integration</h3>
-            <p>Integrating machine learning models for intelligent data processing.</p>
+            <div className="feature-icon">💡</div>
+            <h3>Consulting Services</h3>
+            <p>Expert consulting services to grow your business.</p>
           </div>
-          {/* <div className="feature-card">
+          <div className="feature-card">
             <div className="feature-icon">🔒</div>
             <h3>Topnotch Security</h3>
             <p>Ensuring the highest level of security.</p>
@@ -58,9 +58,71 @@ const LandingPage = () => {
             <div className="feature-icon">🛠️</div>
             <h3>Big Data Visualization</h3>
             <p>Visualizing complex data for better insights.</p>
-          </div> */}
+          </div>
         </div>
       </section>
+      <section className="why-choose-us">
+        <h2>Why Choose Us</h2>
+        <div className="why-choose-us-container">
+          <div className="why-choose-card">
+            <div className="choose-icon">🚀</div>
+            <h3>High Performance</h3>
+            <p>Optimized for speed and reliability.</p>
+          </div>
+          <div className="why-choose-card">
+            <div className="choose-icon">💼</div>
+            <h3>Professional Services</h3>
+            <p>Top-notch services from industry experts.</p>
+          </div>
+          <div className="why-choose-card">
+            <div className="choose-icon">⚙️</div>
+            <h3>Innovative Solutions</h3>
+            <p>Cutting-edge technology to meet your needs.</p>
+          </div>
+        </div>
+      </section>
+      <section className="team-section">
+        <h2>Meet the Team</h2>
+        <div className="team-container">
+          <div className="team-card">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Team Member"
+              className="team-img"
+            />
+            <h3>Muhammad Adil</h3>
+          </div>
+          <div className="team-card">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Team Member"
+              className="team-img"
+            />
+            <h3>Muhammad Suleman</h3>
+          </div>
+          <div className="team-card">
+            <img
+              src="https://via.placeholder.com/150"
+              alt="Team Member"
+              className="team-img"
+            />
+            <h3>Hassan Abrar</h3>
+          </div>
+        </div>
+      </section>
+      <footer className="landing-footer">
+        <div className="footer-content">
+          <p>&copy; 2024 ECOMHUB. All Rights Reserved.</p>
+          <nav className="footer-nav">
+            <Link to="/privacy" className="footer-link">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="footer-link">
+              Terms of Service
+            </Link>
+          </nav>
+        </div>
+      </footer>
     </div>
   );
 };
