@@ -18,6 +18,7 @@ const UrlInputForm = () => {
   const [businessName, setBusinessName] = useState('');
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [additionalResponse, setAdditionalResponse] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,8 +26,13 @@ const UrlInputForm = () => {
       
       try {
         setLoading(true);
-        const res = await axios.get('http://172.16.10.132:3001/get-analytics-page', { params: { url: businessName } });
+        const res = await axios.get('http://192.168.43.229:3001/get-analytics-page', { params: { url: businessName } });
         setResponse(res.data);
+
+        // Additional request
+        // const additionalRes = await axios.get('http://192.168.10.8:3001/get-WebStats', { params: { url: businessName } });
+        // setAdditionalResponse(additionalRes.data);
+        // console.log(additionalResponse)
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
