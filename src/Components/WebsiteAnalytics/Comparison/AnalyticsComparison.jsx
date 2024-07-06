@@ -30,39 +30,39 @@ const UrlInputForm = () => {
         setLoading(true);
   
         // Request 1: Additional stats
-        // const additionalRes = await axios.get(
-        //   "http://192.168.10.8:3001/get-AlexaRanking",
-        //   { params: { url: businessName } }
-        // );
-        // setAlexaRanking(additionalRes.data);
+        const additionalRes = await axios.get(
+          "http://192.168.18.17:3001/get-AlexaRanking",
+          { params: { url: businessName } }
+        );
+        setAlexaRanking(additionalRes.data);
   
         // Request 2: Daily Pageviews
         const Visitors = await axios.get(
-          "http://192.168.43.229:3001/get-VisitorsData",
+          "http://192.168.18.17:3001/get-VisitorsData",
           { params: { url: businessName } }
         );
         setVisitorsData(Visitors.data);
   
         // // Request 3: Bounce Rate
-        // const visitorCountryAlexaRanking = await axios.get(
-        //   "http://192.168.10.8:3001/get-VisitorCountry",
-        //   { params: { url: businessName } }
-        // );
-        // setVisitorCountry(visitorCountryAlexaRanking.data);
+        const visitorCountryAlexaRanking = await axios.get(
+          "http://192.168.18.17:3001/get-VisitorCountry",
+          { params: { url: businessName } }
+        );
+        setVisitorCountry(visitorCountryAlexaRanking.data);
   
         // // Request 4: Search Traffic
-        // const topkeyword = await axios.get(
-        //   "http://192.168.10.8:3001/get-TopKeywords",
-        //   { params: { url: businessName } }
-        // );
-        // setTopKeywords(topkeyword.data);
+        const topkeyword = await axios.get(
+          "http://192.168.18.17:3001/get-TopKeywords",
+          { params: { url: businessName } }
+        );
+        setTopKeywords(topkeyword.data);
   
         // // Request 5: Total Sites Linking In
-        // const ReferalsitesData = await axios.get(
-        //   "http://192.168.10.8:3001/get-ReferalSites",
-        //   { params: { url: businessName } }
-        // );
-        // setReferalSites(ReferalsitesData.data);
+        const ReferalsitesData = await axios.get(
+          "http://192.168.10.8:3001/get-ReferalSites",
+          { params: { url: businessName } }
+        );
+        setReferalSites(ReferalsitesData.data);
   
         // console.log(additionalRes.data, pageviewsRes.data, bounceRateRes.data, searchTrafficRes.data, totalSitesRes.data);
       } catch (error) {
