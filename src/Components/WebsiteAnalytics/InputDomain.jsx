@@ -26,14 +26,21 @@ const UrlInputForm = () => {
       
       try {
         setLoading(true);
-        const res = await axios.get('http://192.168.18.17:3001/get-analytics-page', { params: { url: businessName } });
-        setResponse(res.data);
 
-        // Additional request
-        // const additionalRes = await axios.get('http://192.168.10.8:3001/get-WebStats', { params: { url: businessName } });
-        // setAdditionalResponse(additionalRes.data);
-        // console.log(additionalResponse)
-      } catch (error) {
+        const res = await new Promise((resolve, reject) => {
+          setTimeout(async () => {
+            try {
+              let data = {"url": businessName};
+              const response = await axios.post('http://localhost:3001/get-analytics-page', data);
+              resolve(response);
+            } catch (error) {
+              reject(error);
+            }
+          }, 8000); // 6 seconds delay
+        });
+
+        setResponse(res.data);
+      }catch (error) {
         console.error('Error fetching data:', error);
       } finally {
         setLoading(false);

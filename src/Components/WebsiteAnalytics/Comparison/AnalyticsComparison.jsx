@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Box, Table, TableBody, TableCell, TableContainer, TableRow,TableHead, Paper } from "@mui/material"; // Use @mui/material for all components
+import { Box, Table, TableBody, TableCell, TableContainer, TableRow, TableHead, Paper } from "@mui/material"; // Use @mui/material for all components
 import { Audio } from "react-loader-spinner";
-const apiUrl = process.env.REACT_APP_API_BASE_URL;
+
+// Function to extract business name from URL
 function extractBusinessName(url) {
   try {
     const { hostname } = new URL(url);
@@ -13,68 +14,69 @@ function extractBusinessName(url) {
   }
 }
 
-const UrlInputForm = () => {
+// Function to perform Axios request with retry logic
+const axiosWithRetry = async (url, params, retries = 3, delay = 1000) => {
+  const timeout = 5000; // 5 seconds timeout for each request
+  for (let i = 0; i < retries; i++) {
+    try {
+      const response = await axios.post(url, { params, timeout });
+      return response.data;
+    } catch (error) {
+      if (i === retries - 1) throw error; // If it's the last retry, throw the error
+      await new Promise(res => setTimeout(res, delay)); // Wait before retrying
+      delay *= 2; // Exponential backoff
+    }
+  }
+};
+
+const AnalyticsComparison = () => {
   const [url, setUrl] = useState("");
   const [businessName, setBusinessName] = useState("");
   const [loading, setLoading] = useState(false);
-  const [AlexaRanking, setAlexaRanking] = useState(null); // Change initial state to null
-  const [VisitorsData, setVisitorsData] = useState(null); // Change initial state to null
-  const [VisitorCountry, setVisitorCountry] = useState(null); // Change initial state to null
-  const [TopKeywords, setTopKeywords] = useState(null); // Change initial state to null
-  const [ReferalSites, setReferalSites] = useState(null); // Change initial state to null
+  const [AlexaRanking, setAlexaRanking] = useState(null);
+  const [VisitorsData, setVisitorsData] = useState(null);
+  const [VisitorCountry, setVisitorCountry] = useState(null);
+  const [TopKeywords, setTopKeywords] = useState(null);
+  const [ReferalSites, setReferalSites] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       if (!businessName) return;
-  
+
       try {
         setLoading(true);
-  
+        const baseUrl = "http://localhost:3001";
+        const baseReferalUrl = "http://localhost:3001";
+
         // Request 1: Additional stats
-        const additionalRes = await axios.get(
-          "http://192.168.18.17:3001/get-AlexaRanking",
-          { params: { url: businessName } }
-        );
-        setAlexaRanking(additionalRes.data);
-  
+        const alexaRanking = await axiosWithRetry(`${baseUrl}/get-AlexaRanking`, { url: businessName });
+        setAlexaRanking(alexaRanking);
+
         // Request 2: Daily Pageviews
-        const Visitors = await axios.get(
-          "http://192.168.18.17:3001/get-VisitorsData",
-          { params: { url: businessName } }
-        );
-        setVisitorsData(Visitors.data);
-  
-        // // Request 3: Bounce Rate
-        const visitorCountryAlexaRanking = await axios.get(
-          "http://192.168.18.17:3001/get-VisitorCountry",
-          { params: { url: businessName } }
-        );
-        setVisitorCountry(visitorCountryAlexaRanking.data);
-  
-        // // Request 4: Search Traffic
-        const topkeyword = await axios.get(
-          "http://192.168.18.17:3001/get-TopKeywords",
-          { params: { url: businessName } }
-        );
-        setTopKeywords(topkeyword.data);
-  
-        // // Request 5: Total Sites Linking In
-        const ReferalsitesData = await axios.get(
-          "http://192.168.10.8:3001/get-ReferalSites",
-          { params: { url: businessName } }
-        );
-        setReferalSites(ReferalsitesData.data);
-  
-        // console.log(additionalRes.data, pageviewsRes.data, bounceRateRes.data, searchTrafficRes.data, totalSitesRes.data);
+        const visitorsData = await axiosWithRetry(`${baseUrl}/get-VisitorsData`, { url: businessName });
+        setVisitorsData(visitorsData);
+
+        // Request 3: Visitor Country
+        const visitorCountry = await axiosWithRetry(`${baseUrl}/get-VisitorCountry`, { url: businessName });
+        setVisitorCountry(visitorCountry);
+
+        // Request 4: Top Keywords
+        const topKeywords = await axiosWithRetry(`${baseUrl}/get-TopKeywords`, { url: businessName });
+        setTopKeywords(topKeywords);
+
+        // Request 5: Referral Sites
+        const referalSites = await axiosWithRetry(`${baseReferalUrl}/get-ReferalSites`, { url: businessName });
+        setReferalSites(referalSites);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
         setLoading(false);
       }
     };
-  
+
     fetchData();
   }, [businessName]);
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (url) {
@@ -192,34 +194,35 @@ const UrlInputForm = () => {
               </Table>
             </TableContainer>
           </Box>
-          </div>)}
-
-          {!loading && ReferalSites && (
+        </div>
+      )}
+      {!loading && ReferalSites && (
         <div style={{ width: "100%", marginTop: "20px" }}>
-          <h2>Referal Sites :</h2>
+          <h2>Referral Sites:</h2>
           <Box>
-        <TableContainer component={Paper} style={{ marginBottom: "20px" }}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Website</TableCell>
-                <TableCell>Referral Traffic</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {!loading && ReferalSites && ReferalSites.map((data, index) => (
-                <TableRow key={index}>
-                  <TableCell>{data.website}</TableCell>
-                  <TableCell>{data.ReferalSite}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
-          </div>)}
+            <TableContainer component={Paper} style={{ marginBottom: "20px" }}>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Website</TableCell>
+                    <TableCell>Referral Traffic</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {ReferalSites.map((data, index) => (
+                    <TableRow key={index}>
+                      <TableCell>{data.website}</TableCell>
+                      <TableCell>{data.ReferalSite}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Box>
+        </div>
+      )}
     </Box>
   );
 };
 
-export default UrlInputForm;
+export default AnalyticsComparison;
