@@ -19,6 +19,7 @@ import { auth, db } from '../../Authentication/firebase';
 import LoginScreen from "../../Authentication/Login/LoginScreen";
 import CompareAnalytics from "../../WebsiteAnalytics/Comparison/AnalyticsComparison";
 import ThreeColumnLayout from "../../WebsiteAnalytics/Comparison/Compare";
+import Notifications from "../../ToolsandTech/Notifications/Notification";
 const drawerWidth = 240;
 
 export default function SideDrawer(props) {
@@ -81,7 +82,7 @@ export default function SideDrawer(props) {
       <List>
         {[
           { text: "Website Analytics", component: <UrlInputForm /> },
-          { text: "Notifications", component: <EcommerceToolsPage /> },
+          { text: "Notifications", component: <Notifications /> },
           { text: "Explore Business", component: <DataComponent /> },
           { text: "Tools and Technologies", component: <EcommerceToolsPage /> },
           { text: "Compare Web Analytics", component: <ThreeColumnLayout /> },

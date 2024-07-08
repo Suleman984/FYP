@@ -10,6 +10,7 @@ import {
   Button,
   Box,
 } from '@mui/material';
+import Notifications from './Notifications/Notification';
 
 const ToolsList = () => {
   const [tools, setTools] = useState([]);
@@ -20,9 +21,19 @@ const ToolsList = () => {
         setTools(response.data);
       })
       .catch(error => {
-        console.log("error: ", error);
+        console.error('Error fetching tools:', error);
       });
   }, []);
+
+  const addNewTool = (newTool) => {
+    axios.post('http://localhost:3001/add-tool', newTool)
+      .then(response => {
+        setTools([...tools, response.data.newTool]);
+      })
+      .catch(error => {
+        console.error('Error adding new tool:', error);
+      });
+  };
 
   return (
     <Container>
@@ -66,6 +77,7 @@ const ToolsList = () => {
           </Grid>
         ))}
       </Grid>
+      
     </Container>
   );
 };

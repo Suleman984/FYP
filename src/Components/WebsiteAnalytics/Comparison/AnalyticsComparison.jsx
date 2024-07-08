@@ -61,6 +61,7 @@ const AnalyticsComparison = ({ title }) => {
   const [topKeywords, setTopKeywords] = useState(null);
   const [referalSites, setReferalSites] = useState(null);
   const [submitted, setSubmitted] = useState(false);
+  const [webname,setWebname]=useState(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -112,6 +113,7 @@ const AnalyticsComparison = ({ title }) => {
     e.preventDefault();
     if (url) {
       const name = extractBusinessName(url);
+      setWebname(name)
       const apiUrl = `http://gh-export.us/webstats/siteinfo/${name}`;
       setBusinessName(apiUrl);
       setSubmitted(true); // Hide input card
@@ -162,108 +164,116 @@ const AnalyticsComparison = ({ title }) => {
         </Box>
       )}
 
-      {!loading && alexaRanking && (
+      {!loading && (alexaRanking || visitorsData || visitorCountry || topKeywords || referalSites) && (
         <Box sx={{ width: "100%", marginTop: "20px" }}>
-          <Typography variant="h6" sx={{ marginBottom: "10px" }}>
-            Alexa Ranking:
+          <Typography variant="h5" sx={{ marginBottom: "10px" }}>
+            Website: {webname}
           </Typography>
-          <TableContainer component={Paper}>
-            <Table>
-              <TableBody>
-                {Object.entries(alexaRanking).map(([key, value]) => (
-                  <TableRow key={key}>
-                    <TableCell>{key}</TableCell>
-                    <TableCell>{value}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Box>
-      )}
 
-      {!loading && visitorsData && (
-        <Box sx={{ width: "100%", marginTop: "20px" }}>
-          <Typography variant="h6" sx={{ marginBottom: "10px" }}>
-            Visitors Data:
-          </Typography>
-          <TableContainer component={Paper} sx={{ marginBottom: "20px" }}>
-            <Table>
-              <TableBody>
-                {visitorsData.map((data, index) => (
-                  <TableRow key={index}>
-                    <TableCell>{data}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Box>
-      )}
+          {alexaRanking && (
+            <Box sx={{ width: "100%", marginTop: "20px" }}>
+              <Typography variant="h6" sx={{ marginBottom: "10px" }}>
+                Alexa Ranking:
+              </Typography>
+              <TableContainer component={Paper}>
+                <Table>
+                  <TableBody>
+                    {Object.entries(alexaRanking).map(([key, value]) => (
+                      <TableRow key={key}>
+                        <TableCell>{key}</TableCell>
+                        <TableCell>{value}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Box>
+          )}
 
-      {!loading && visitorCountry && (
-        <Box sx={{ width: "100%", marginTop: "20px" }}>
-          <Typography variant="h6" sx={{ marginBottom: "10px" }}>
-            Visitor Country Data:
-          </Typography>
-          <TableContainer component={Paper} sx={{ marginBottom: "20px" }}>
-            <Table>
-              <TableBody>
-                {visitorCountry.map((data, index) => (
-                  <TableRow key={index}>
-                    <TableCell>{data.country}</TableCell>
-                    <TableCell>Alexa Rank: {data.alexaRank}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Box>
-      )}
+          {visitorsData && (
+            <Box sx={{ width: "100%", marginTop: "20px" }}>
+              <Typography variant="h6" sx={{ marginBottom: "10px" }}>
+                Visitors Data:
+              </Typography>
+              <TableContainer component={Paper} sx={{ marginBottom: "20px" }}>
+                <Table>
+                  <TableBody>
+                    {visitorsData.map((data, index) => (
+                      <TableRow key={index}>
+                        <TableCell>{data}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Box>
+          )}
 
-      {!loading && topKeywords && (
-        <Box sx={{ width: "100%", marginTop: "20px" }}>
-          <Typography variant="h6" sx={{ marginBottom: "10px" }}>
-            Top Keywords Data:
-          </Typography>
-          <TableContainer component={Paper} sx={{ marginBottom: "20px" }}>
-            <Table>
-              <TableBody>
-                {topKeywords.map((data, index) => (
-                  <TableRow key={index}>
-                    <TableCell>{data.keyword}</TableCell>
-                    <TableCell>{data.searchTraffic}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Box>
-      )}
+          {visitorCountry && (
+            <Box sx={{ width: "100%", marginTop: "20px" }}>
+              <Typography variant="h6" sx={{ marginBottom: "10px" }}>
+                Visitor Country Data:
+              </Typography>
+              <TableContainer component={Paper} sx={{ marginBottom: "20px" }}>
+                <Table>
+                  <TableBody>
+                    {visitorCountry.map((data, index) => (
+                      <TableRow key={index}>
+                        <TableCell>{data.country}</TableCell>
+                        <TableCell>Alexa Rank: {data.alexaRank}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Box>
+          )}
 
-      {!loading && referalSites && (
-        <Box sx={{ width: "100%", marginTop: "20px" }}>
-          <Typography variant="h6" sx={{ marginBottom: "10px" }}>
-            Referral Sites:
-          </Typography>
-          <TableContainer component={Paper} sx={{ marginBottom: "20px" }}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Website</TableCell>
-                  <TableCell>Referral Traffic</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {referalSites.map((data, index) => (
-                  <TableRow key={index}>
-                    <TableCell>{data.website}</TableCell>
-                    <TableCell>{data.referalTraffic}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          {topKeywords && (
+            <Box sx={{ width: "100%", marginTop: "20px" }}>
+              <Typography variant="h6" sx={{ marginBottom: "10px" }}>
+                Top Keywords Data:
+              </Typography>
+              <TableContainer component={Paper} sx={{ marginBottom: "20px" }}>
+                <Table>
+                  <TableBody>
+                    {topKeywords.map((data, index) => (
+                      <TableRow key={index}>
+                        <TableCell>{data.keyword}</TableCell>
+                        <TableCell>{data.searchTraffic}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Box>
+          )}
+
+          {referalSites && (
+            <Box sx={{ width: "100%", marginTop: "20px" }}>
+              <Typography variant="h6" sx={{ marginBottom: "10px" }}>
+                Referral Sites:
+              </Typography>
+              <TableContainer component={Paper} sx={{ marginBottom: "20px" }}>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Website</TableCell>
+                      <TableCell>Referral Traffic</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {referalSites.map((data, index) => (
+                      <TableRow key={index}>
+                        <TableCell>{data.website}</TableCell>
+                        <TableCell>{data.referalTraffic}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Box>
+          )}
         </Box>
       )}
     </Box>

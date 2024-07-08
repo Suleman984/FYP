@@ -36,7 +36,6 @@ const UrlInputForm = () => {
   const [businessName, setBusinessName] = useState("");
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -78,36 +77,33 @@ const UrlInputForm = () => {
       const apiUrl = `http://gh-export.us/webstats/siteinfo/${name}`;
       setBusinessName(apiUrl);
       setResponse(null); // Reset previous response
-      setSubmitted(true); // Hide input card
     }
   };
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Collapse in={!submitted}>
-        <ExpandableCard>
-          <CardContent>
-            <Typography variant="h5">Enter Website URL</Typography>
-            <form onSubmit={handleSubmit}>
-              <TextField
-                type="url"
-                label="Website URL"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-                placeholder="https://example.com"
-                required
-                fullWidth
-                margin="normal"
-              />
-              <CardActions>
-                <Button type="submit" variant="contained" color="primary">
-                  Submit
-                </Button>
-              </CardActions>
-            </form>
-          </CardContent>
-        </ExpandableCard>
-      </Collapse>
+      <ExpandableCard>
+        <CardContent>
+          <Typography variant="h5">Enter Website URL</Typography>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              type="url"
+              label="Website URL"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              placeholder="https://example.com"
+              required
+              fullWidth
+              margin="normal"
+            />
+            <CardActions>
+              <Button type="submit" variant="contained" color="primary">
+                Submit
+              </Button>
+            </CardActions>
+          </form>
+        </CardContent>
+      </ExpandableCard>
 
       {loading && (
         <Box
