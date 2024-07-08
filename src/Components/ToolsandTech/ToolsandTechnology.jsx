@@ -10,7 +10,6 @@ import {
   Button,
   Box,
 } from '@mui/material';
-import Notifications from './Notifications/Notification';
 
 const ToolsList = () => {
   const [tools, setTools] = useState([]);
@@ -37,13 +36,27 @@ const ToolsList = () => {
 
   return (
     <Container>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Tools List
-      </Typography>
-      <Grid container spacing={4}>
+      <Box sx={{ marginTop: '20px', padding: '20px' }}>
+        <Typography variant="h2" sx={{ textAlign: 'center', marginBottom: '20px', color: '#2196f3' }}>
+          Tools List
+        </Typography>
+      </Box>
+      <Grid container spacing={4} justifyContent="center">
         {tools.map(tool => (
           <Grid item key={tool._id} xs={12} sm={6} md={4}>
-            <Card sx={{ height: '100%' }}>
+            <Card
+              sx={{
+                height: '100%',
+                backgroundColor: '#E0E0E0',
+                borderRadius: '15px',
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                '&:hover': {
+                  transform: 'translateY(-10px)',
+                  boxShadow: '0 12px 24px rgba(0, 0, 0, 0.2)',
+                }
+              }}
+            >
               <Box sx={{ height: 200, overflow: 'hidden' }}>
                 <CardMedia
                   component="img"
@@ -52,7 +65,11 @@ const ToolsList = () => {
                   sx={{
                     width: '100%',
                     height: '100%',
-                    objectFit: 'cover'
+                    objectFit: 'cover',
+                    transition: 'transform 0.3s ease',
+                    '&:hover': {
+                      transform: 'scale(1.1)',
+                    }
                   }}
                 />
               </Box>
@@ -63,21 +80,30 @@ const ToolsList = () => {
                 <Typography variant="body2" color="text.secondary">
                   {tool.text}
                 </Typography>
-                <Button
-                  size="small"
-                  color="primary"
-                  href={tool.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Learn More
-                </Button>
+                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                  <Button
+                    size="small"
+                    color="primary"
+                    href={tool.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    sx={{
+                      width: '90%',
+                      backgroundColor: '#2196f3',
+                      color: '#fff',
+                      '&:hover': {
+                        backgroundColor: '#1976d2',
+                      }
+                    }}
+                  >
+                    Learn More
+                  </Button>
+                </Box>
               </CardContent>
             </Card>
           </Grid>
         ))}
       </Grid>
-      
     </Container>
   );
 };

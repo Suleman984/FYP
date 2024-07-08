@@ -8,10 +8,10 @@ import {
   Button,
   TextField,
   Typography,
-  Collapse,
 } from "@mui/material";
 import { Audio } from "react-loader-spinner";
 import { styled } from "@mui/system";
+import StreamlitIframe from "./Streamlit";
 
 const extractBusinessName = (url) => {
   try {
@@ -36,6 +36,7 @@ const UrlInputForm = () => {
   const [businessName, setBusinessName] = useState("");
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showStreamlit, setShowStreamlit] = useState(false); // State to control visibility of Streamlit component
 
   useEffect(() => {
     const fetchData = async () => {
@@ -78,6 +79,14 @@ const UrlInputForm = () => {
       setBusinessName(apiUrl);
       setResponse(null); // Reset previous response
     }
+  };
+
+  const handleRecommendations = () => {
+    // Your logic to fetch and display recommendations
+    console.log("Get Recommendations clicked");
+    setShowStreamlit(true); // Show Streamlit component
+    // window.location.href('http://localhost:8501/')
+    window.open('http://localhost:8501/', '_blank');
   };
 
   return (
@@ -133,6 +142,16 @@ const UrlInputForm = () => {
             Website Analytics
           </Typography>
           <Box dangerouslySetInnerHTML={{ __html: response }} />
+          <Box sx={{ textAlign: "center", marginTop: "20px" }}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handleRecommendations}
+            >
+              Get Recommendations
+            </Button>
+          </Box>
+          {showStreamlit && <StreamlitIframe />} {/* Conditionally render Streamlit component */}
         </Box>
       )}
     </Box>

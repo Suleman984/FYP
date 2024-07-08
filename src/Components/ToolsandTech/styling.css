@@ -1,4 +1,4 @@
-/* EcommerceToolsPage.css */
+/* styling.css */
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
@@ -12,81 +12,61 @@
     border-radius: 10px;
 }
 
-.section {
-    margin-bottom: 50px;
+.page-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #1976d2;
 }
 
-h2 {
-    font-size: 28px;
-    margin-bottom: 25px;
-    color: #1a73e8;
-    border-bottom: 2px solid #1a73e8;
-    padding-bottom: 10px;
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
 }
 
-p {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #555;
-    margin-bottom: 20px;
-}
-
-ul {
-    list-style-type: disc;
-    margin-left: 25px;
-}
-
-li {
-    font-size: 18px;
-    margin-bottom: 12px;
-    color: #555;
-}
-
-li::marker {
-    color: #1a73e8;
-}
-
-.ecommerce-tools-page ul li::before {
-    content: '• ';
-    color: #1a73e8;
-    font-weight: bold;
-    display: inline-block;
-    width: 1em;
-    margin-left: -1em;
-}
-
-.ecommerce-tools-page a {
-    color: #1a73e8;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.ecommerce-tools-page a:hover {
-    color: #333;
-}
-
-/* Card Styles */
 .card {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     margin-bottom: 30px;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
+    flex: 1 1 calc(33.333% - 20px);
+    display: flex;
+    flex-direction: column;
+    max-width: calc(33.333% - 20px);
+    box-sizing: border-box;
+    min-height: 400px; /* Ensure cards have a minimum height */
 }
 
 .card:hover {
     transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
-.card img {
+.image-container {
+    height: 200px;
+    overflow: hidden;
+}
+
+.card-image {
     width: 100%;
-    height: auto;
-    display: block;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.card:hover .card-image {
+    transform: scale(1.1);
 }
 
 .card-content {
     padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card-title {
@@ -99,26 +79,6 @@ li::marker {
     font-size: 16px;
     color: #555;
     line-height: 1.6;
-}
-
-/* Flexbox for equal card sizes */
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between;
-}
-
-.card {
-    flex: 1 1 calc(33.333% - 20px);
-    display: flex;
-    flex-direction: column;
-    max-width: calc(33.333% - 20px);
-    box-sizing: border-box;
-}
-
-.card-content {
-    flex-grow: 1;
 }
 
 @media (max-width: 768px) {
